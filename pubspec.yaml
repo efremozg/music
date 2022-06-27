@@ -41,6 +41,8 @@ dependencies:
   marquee: ^2.2.3
   provider: ^6.0.3
   tween_image_widget: ^0.0.2
+  quds_popup_menu: ^0.0.1+1
+  show_more_text_popup: ^0.3.0
 
 dev_dependencies:
   flutter_test:

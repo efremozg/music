@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_music/constants.dart';
-import 'package:flutter_music/data/user_data.dart';
 import 'package:flutter_music/widgets/posts_widget.dart';
 import 'package:flutter_music/widgets/stories_widget2.dart';
 
