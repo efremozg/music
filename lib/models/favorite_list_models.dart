@@ -13,10 +13,7 @@ class FavoriteListModel {
         items[id % items.length],
       );
 
-  /// Get item by its position in the List.
   Item getByPosition(int position) {
-    // In this simplified case, an item's position in the List
-    // is also its id.
     return getById(position);
   }
 }
@@ -26,8 +23,6 @@ class Item {
   final Widget item;
 
   const Item(this.id, this.item);
-
-  // To make the sample app look nicer, each item is given id ,name and icon.
 
   @override
   int get hashCode => id;

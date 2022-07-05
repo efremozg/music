@@ -13,12 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> items = [
-      postPanel(context, 0),
-      postPanel(context, 1),
-      postPanel(context, 2),
-    ];
-
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(
@@ -26,8 +20,8 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Column(
-            children: const [
-              StoriesBarWidget(),
+            children: [
+              StoryWidget(),
               SizedBox(height: 20),
               MyPost(index: 0),
               SizedBox(height: 10),

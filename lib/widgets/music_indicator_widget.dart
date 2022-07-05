@@ -1,9 +1,11 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_music/constants.dart';
+import 'package:flutter_music/data/user_data.dart';
 
 class MusicIndicator extends StatefulWidget {
-  const MusicIndicator({Key? key}) : super(key: key);
+  final int index;
+  const MusicIndicator(this.index, {Key? key}) : super(key: key);
 
   @override
   State<MusicIndicator> createState() => _MusicIndicatorState();
@@ -14,7 +16,6 @@ class _MusicIndicatorState extends State<MusicIndicator> {
   bool isPlaying = false;
   Duration position = Duration.zero;
   Duration duration = Duration.zero;
-  final timerFinishedAudio = "track1.wav";
 
   @override
   void initState() {
@@ -22,7 +23,7 @@ class _MusicIndicatorState extends State<MusicIndicator> {
 
     //audioPlayer.stop();
 
-    setAudio();
+    setAudio(widget.index);
 
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
@@ -42,10 +43,10 @@ class _MusicIndicatorState extends State<MusicIndicator> {
     });
   }
 
-  Future setAudio() async {
+  Future setAudio(int index) async {
     audioPlayer.setReleaseMode(ReleaseMode.loop);
     return [
-      await audioPlayer.setSourceAsset('track1.wav'),
+      await audioPlayer.setSourceAsset(beatInfo[index].trackName),
       await audioPlayer.pause(),
     ];
   }

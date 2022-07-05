@@ -41,7 +41,7 @@ Widget postPanel(BuildContext context, int index) {
             const SizedBox(height: 6),
             musicInfo(context, beatInfo[index]),
             const SizedBox(height: 8),
-            MusicIndicator(),
+            MusicIndicator(index),
             const SizedBox(height: 8),
             PostActionsWidget(index)
           ],
@@ -59,7 +59,7 @@ Widget musicInfo(BuildContext context, PostMusicInfo information) {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 130),
+            constraints: const BoxConstraints(maxWidth: 130),
             child: Text(
               information.beatName,
               style: mainTextStyle,

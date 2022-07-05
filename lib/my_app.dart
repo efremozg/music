@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_music/screens/account_page.dart';
+import 'package:flutter_music/screens/create_page.dart';
 import 'package:flutter_music/screens/home_page.dart';
 import 'package:flutter_music/screens/liked_page.dart';
 import 'package:flutter_music/screens/search_page.dart';
@@ -48,10 +49,11 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
 
   final myscreens = <Widget>[
-    HomePage(),
-    SearchPage(),
-    LikedPage(),
-    AccountPage(),
+    const HomePage(),
+    const SearchPage(),
+    const CreationPage(),
+    const LikedPage(),
+    const AccountPage(),
   ];
 
   @override
@@ -69,11 +71,15 @@ class _MainPageState extends State<MainPage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 backgroundColor: foregroundColor,
-                icon: Icon(UniconsLine.home_alt),
+                icon: Icon(Icons.whatshot),
                 label: ''),
             BottomNavigationBarItem(
                 backgroundColor: foregroundColor,
                 icon: Icon(UniconsLine.search),
+                label: ''),
+            BottomNavigationBarItem(
+                backgroundColor: foregroundColor,
+                icon: Icon(UniconsLine.music_note),
                 label: ''),
             BottomNavigationBarItem(
                 backgroundColor: foregroundColor,

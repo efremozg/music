@@ -4,18 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_music/constants.dart';
 import 'package:flutter_music/data/user_data.dart';
 
-class StoriesBarWidget extends StatefulWidget {
-  const StoriesBarWidget({Key? key}) : super(key: key);
-
-  @override
-  State<StoriesBarWidget> createState() => _StoriesBarWidgetState();
-}
-
-class _StoriesBarWidgetState extends State<StoriesBarWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class StoryWidget extends StatelessWidget {
+  const StoryWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +15,18 @@ class _StoriesBarWidgetState extends State<StoriesBarWidget> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: users.length,
-        itemBuilder: (context, int index) => StoryAnimation(index: index),
+        itemBuilder: (context, i) => StoryAnimation(value: i),
       ),
     );
   }
 }
 
 class StoryAnimation extends StatefulWidget {
+  final int value;
   const StoryAnimation({
-    required this.index,
+    required this.value,
     Key? key,
   }) : super(key: key);
-  final int index;
 
   @override
   State<StoryAnimation> createState() => _StoryAnimationState();
@@ -45,7 +35,6 @@ class StoryAnimation extends StatefulWidget {
 class _StoryAnimationState extends State<StoryAnimation>
     with TickerProviderStateMixin {
   late AnimationController controller;
-
   @override
   void initState() {
     super.initState();
@@ -58,7 +47,7 @@ class _StoryAnimationState extends State<StoryAnimation>
   bool isClicked = false;
   bool isListen = false;
 
-  Widget story(int index, UserData post) {
+  Widget story(int index) {
     final animation = Tween(begin: 0.0, end: 6 * pi * 2).animate(controller);
     return Stack(alignment: Alignment.bottomCenter, children: [
       Padding(
@@ -87,7 +76,7 @@ class _StoryAnimationState extends State<StoryAnimation>
                             color: (isListen) ? bgColor : Colors.red, width: 2),
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: AssetImage(post.userAvatar),
+                            image: AssetImage(users[index].userAvatar),
                             fit: BoxFit.cover),
                       ),
                     ),
@@ -99,7 +88,7 @@ class _StoryAnimationState extends State<StoryAnimation>
       Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            post.userName,
+            users[index].userName,
             style: secondTextStyle,
           )),
     ]);
@@ -107,8 +96,6 @@ class _StoryAnimationState extends State<StoryAnimation>
 
   @override
   Widget build(BuildContext context) {
-    int index = StoryAnimation(index: 3).index;
-    UserData post = users[index];
-    return story(index, post);
+    return story(widget.value);
   }
 }
