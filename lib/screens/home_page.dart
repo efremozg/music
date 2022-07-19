@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Column(
-            children: [
+            children: const [
               StoryWidget(),
               SizedBox(height: 20),
               MyPost(index: 0),

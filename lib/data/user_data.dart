@@ -13,13 +13,23 @@ List<UserData> users = [
 ];
 
 class PostMusicInfo {
-  String beatName, typeBeat, trackName;
+  String beatName,
+      typeBeat,
+      trackName,
+      tuneType,
+      bpm,
+      leasePrice,
+      exclesivePrice;
 
-  PostMusicInfo(this.beatName, this.typeBeat, this.trackName);
+  PostMusicInfo(this.beatName, this.typeBeat, this.trackName, this.bpm,
+      this.exclesivePrice, this.leasePrice, this.tuneType);
 }
 
 List<PostMusicInfo> beatInfo = [
-  PostMusicInfo('Солнце', 'Lil Krystall, Chimera', 'track2.mp3'),
-  PostMusicInfo('Circus', 'Pharaoh, SLAVA MARLOW', 'track1.wav'),
-  PostMusicInfo('Rainbow of Love', 'Blago White, fem.Love', 'track1.wav'),
+  PostMusicInfo('Солнце', 'Lil Krystall, Chimera', 'track2.mp3', '120 BPM',
+      '5000', '700', 'B Major'),
+  PostMusicInfo('Circus', 'Pharaoh, SLAVA MARLOW', 'track1.wav', '100 BPM',
+      '4500', '500', 'A# Minor'),
+  PostMusicInfo('Rainbow of Love', 'Blago White, fem.Love', 'track1.wav',
+      '100 BPM', '4500', '500', 'A# Minor'),
 ];

@@ -14,6 +14,8 @@ class MusicIndicator extends StatefulWidget {
 class _MusicIndicatorState extends State<MusicIndicator> {
   final audioPlayer = AudioPlayer();
   bool isPlaying = false;
+  String currentSong = '';
+  bool canPlay = true;
   Duration position = Duration.zero;
   Duration duration = Duration.zero;
 
@@ -23,7 +25,8 @@ class _MusicIndicatorState extends State<MusicIndicator> {
 
     //audioPlayer.stop();
 
-    setAudio(widget.index);
+    //setAudio(widget.index);
+    audioPlayer.setSourceAsset(beatInfo[widget.index].trackName);
 
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
@@ -43,12 +46,21 @@ class _MusicIndicatorState extends State<MusicIndicator> {
     });
   }
 
-  Future setAudio(int index) async {
+  void playMusic() async {
     audioPlayer.setReleaseMode(ReleaseMode.loop);
-    return [
-      await audioPlayer.setSourceAsset(beatInfo[index].trackName),
-      await audioPlayer.pause(),
-    ];
+
+    await audioPlayer.pause();
+    if (!isPlaying) {
+      setState(() {
+        isPlaying = false;
+      });
+      await audioPlayer.resume();
+    } else {
+      await audioPlayer.pause();
+      setState(() {
+        isPlaying = true;
+      });
+    }
   }
 
   @override
@@ -79,13 +91,7 @@ class _MusicIndicatorState extends State<MusicIndicator> {
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () async {
-              if (isPlaying) {
-                await audioPlayer.pause();
-              } else {
-                await audioPlayer.resume();
-              }
-            },
+            onTap: playMusic,
             child: Padding(
               padding: const EdgeInsets.only(top: 12),
               child: Container(
